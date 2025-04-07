@@ -5,5 +5,17 @@ Home Page
 {% endblock%}
 
 {% block contents %}
-<h1>This is a<br>Index</h1>
+<table border="1">
+    <tr>
+        <th>标题</th>
+        <th>内容</th>
+    </tr>
+    {% for article in articles %}
+    <tr>
+        <td><a href="/article/{{article.id}}.html">{{article.title}}</a></td>
+        <td>{{article.content}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
 {% endblock %}
