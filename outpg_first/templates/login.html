@@ -5,5 +5,23 @@ Login Page
 {% endblock%}
 
 {% block contents %}
-<h1>This is a<br>Login</h1>
+<div  class="container-xl">
+    <form method="POST" class="form-signin">
+        {{ form.hidden_tag() }}
+        <h1 class="h3 mb-3 font-weight-normal">
+            ユーザー登録
+        </h1>
+        <br>
+        {{ form.username.label() }}
+        {{ form.username(class="form-control", placeholder="ユーザー名を入力ください") }}
+
+        {{ form.password.label() }}
+        {{ form.password(class="form-control", placeholder="パスワードを入力ください") }}
+
+        <br>
+
+        {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
+    </form>
+</div>
 {% endblock %}

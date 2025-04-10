@@ -1,6 +1,8 @@
+from outpg_first.forms.login_form import LoginForm
 from outpg_first.routes import app
-from flask import render_template, abort
+from flask import render_template, abort, redirect, url_for, flash
 from outpg_first.services.artical_service import *
+from outpg_first.services.users_service import *
 @app.route("/")
 @app.route("/index.html")
 def home_page():
@@ -17,6 +19,14 @@ def article_page(article_id):
     abort(404)
 
 
-@app.route("/login.html")
+@app.route("/login.html", methods=['GET', 'POST'])
 def login_page():
-    return render_template("login.html", my_title="home")
+    form = LoginForm()
+    # POST+VALIDATE
+    if form.validate_on_submit():
+        result = UserService().do_login(username=form.username.data, password=form.password.data)
+        if result:
+            return redirect(url_for("home_page"))
+        else:
+            flash("error!", category='danger')
+    return render_template("login.html", form=form)

@@ -10,7 +10,7 @@ class Artical(db.Model):
     __content: Mapped[bytes] = mapped_column(BLOB, name="content")
     cre_time: Mapped[datetime] = mapped_column(TIMESTAMP, nullable=False)
     upd_time: Mapped[datetime] = mapped_column(TIMESTAMP, nullable=False)
-
+    del_flg: Mapped[int] = mapped_column(Integer, nullable=False)
     @property
     def content(self):
         return self.__content.decode('utf-8')
