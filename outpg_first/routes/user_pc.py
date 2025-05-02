@@ -6,8 +6,7 @@ from outpg_first.services.users_service import *
 @app.route("/")
 @app.route("/index.html")
 def home_page():
-    articles = ArticalService().get_allArticle()
-    return render_template("index.html", articles=articles)
+    return render_template("index.html")
 
 @app.route("/article/<article_id>.html")
 def article_page(article_id):

@@ -1,10 +1,14 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+import os
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
 app = Flask(__name__,
-            template_folder='../templates',
-            static_folder='../assets',
-            static_url_path='/assets')
+            static_folder=os.path.join(BASE_DIR, 'assets'),
+            static_url_path='/assets',
+            template_folder=os.path.join(BASE_DIR, 'templates'))
 
 #db接续
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqldb://root:root@localhost:3306/pic_learn"

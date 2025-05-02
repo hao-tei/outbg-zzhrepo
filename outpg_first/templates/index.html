@@ -20,11 +20,12 @@ Home Page
   <h2>上传图片</h2>
   <form id="upload-form" enctype="multipart/form-data">
     <input type="file" name="image" id="image" accept="image/*">
-    <button type="submit">アップロード</button>
+    <button type="submit">上传</button>
   </form>
 
+  <div id="result" style="margin-top:20px;"></div>
 
-<script>
+  <script>
     document.getElementById('upload-form').addEventListener('submit', async function(e) {
       e.preventDefault();
 
@@ -38,8 +39,13 @@ Home Page
       });
 
       const result = await response.json();
-      alert(result.message);
+      if (result.image_url) {
+        document.getElementById('result').innerHTML =
+          `<p>${result.message}</p><img src="${result.image_url}" alt="处理后图片" style="max-width: 400px;">`;
+      } else {
+        alert(result.message);
+      }
     });
-</script>
+  </script>
 
 {% endblock %}
