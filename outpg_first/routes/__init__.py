@@ -15,4 +15,5 @@ login_manager = LoginManager(app)
 
 from outpg_first.routes import user_pc
 from outpg_first.routes import admin_pc
+from outpg_first.routes import picture_pc
 

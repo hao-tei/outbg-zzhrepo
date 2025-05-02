@@ -5,17 +5,41 @@ Home Page
 {% endblock%}
 
 {% block contents %}
-<table border="1">
-    <tr>
-        <th>标题</th>
-        <th>内容</th>
-    </tr>
-    {% for article in articles %}
-    <tr>
-        <td><a href="/article/{{article.id}}.html">{{article.title}}</a></td>
-        <td>{{article.content}}</td>
-    </tr>
-    {% endfor %}
-</table>
+<!--<table border="1">-->
+<!--    <tr>-->
+<!--        <th>标题</th>-->
+<!--        <th>内容</th>-->
+<!--    </tr>-->
+<!--    {% for article in articles %}-->
+<!--    <tr>-->
+<!--        <td><a href="/article/{{article.id}}.html">{{article.title}}</a></td>-->
+<!--        <td>{{article.content}}</td>-->
+<!--    </tr>-->
+<!--    {% endfor %}-->
+<!--</table>-->
+  <h2>上传图片</h2>
+  <form id="upload-form" enctype="multipart/form-data">
+    <input type="file" name="image" id="image" accept="image/*">
+    <button type="submit">アップロード</button>
+  </form>
+
+
+<script>
+    document.getElementById('upload-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const formData = new FormData();
+      const fileInput = document.getElementById('image');
+      formData.append('image', fileInput.files[0]);
+
+      const response = await fetch('/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+      alert(result.message);
+    });
+</script>
 
 {% endblock %}
