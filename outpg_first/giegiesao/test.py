@@ -3,10 +3,11 @@ import numpy as np
 from rembg import remove
 from PIL import Image
 from io import BytesIO
+from outpg_first.routes import app
 import os
 
 # 输出文件夹
-OUTPUT_DIR = "test_outputs"
+OUTPUT_DIR = os.path.join(app.static_folder, 'img')
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def remove_background(input_path, output_name="removed_bg.png"):
@@ -17,6 +18,7 @@ def remove_background(input_path, output_name="removed_bg.png"):
     with open(output_path, "wb") as f:
         f.write(result)
     print(f"[✔] 背景去除完成：{output_path}")
+    return output_path
 
 def resize_image(input_path, width=300, height=300, output_name="resized.png"):
     image = cv2.imread(input_path)
