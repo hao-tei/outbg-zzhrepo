@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 from PIL import Image
 UPLOAD_FOLDER = os.path.join(app.static_folder, 'img')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 
