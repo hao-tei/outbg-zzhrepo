@@ -45,11 +45,3 @@ def enhance_contrast(input_path, output_name="enhanced_contrast.png"):
     cv2.imwrite(output_path, result)
     print(f"[✔] 对比度增强完成：{output_path}")
 
-# 示例测试用例（替换为你自己的文件路径）
-if __name__ == "__main__":
-    input_file = "test.png"  # 你要测试的图片路径
-
-    remove_background(input_file)
-    #resize_image(input_file, width=400, height=400)
-    #crop_image(input_file, x=50, y=50, w=200, h=200)
-    #enhance_contrast(input_file)
